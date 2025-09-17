@@ -163,11 +163,11 @@
             <form id="loginForm">
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Username</label>
-                    <input type="text" id="username" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon" placeholder="EPK-OJKDIY">
+                    <input type="text" id="username" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon" placeholder="Isi User...">
                 </div>
                 <div class="mb-6">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
-                    <input type="password" id="password" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon" placeholder="Epkjogja">
+                    <input type="password" id="password" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon" placeholder="Isi Password...">
                 </div>
                 <button type="submit" class="w-full maroon-primary text-white py-2 px-4 rounded-lg hover:maroon-secondary transition duration-200">
                     Masuk Dashboard
@@ -1015,7 +1015,7 @@
                 const username = document.getElementById('username').value;
                 const password = document.getElementById('password').value;
 
-                if (username === 'Isi Username..' && password === 'Isi Password..') {
+                if (username === 'EPK-OJKDIY' && password === 'Epkjogja') {
                     isLoggedIn = true;
                     document.getElementById('loginModal').classList.add('hidden');
                     document.getElementById('mainApp').classList.remove('hidden');
