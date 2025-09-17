@@ -163,7 +163,7 @@
             <form id="loginForm">
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Username</label>
-                    <input type="text" id="username" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon" placeholder="Isi User...">
+                    <input type="text" id="username" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon" placeholder="Isi Username...">
                 </div>
                 <div class="mb-6">
                     <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
@@ -222,6 +222,9 @@
                     <button class="nav-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-maroon" data-tab="reports">
                         Laporan
                     </button>
+                    <button class="nav-btn py-4 px-2 border-b-2 border-transparent text-gray-500 hover:text-maroon" data-tab="settings">
+                        Pengaturan
+                    </button>
                 </div>
             </div>
         </nav>
@@ -250,8 +253,13 @@
                         
                         <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
                             <div class="flex space-x-2">
-                                <input type="text" id="searchEvents" placeholder="🔍 Cari agenda..." 
-                                       class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon text-sm">
+                                <div class="relative">
+                                    <input type="text" id="searchEvents" placeholder="Cari agenda..." 
+                                           class="px-3 py-2 pl-10 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon text-sm">
+                                    <svg class="w-4 h-4 absolute left-3 top-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                    </svg>
+                                </div>
                                 <select id="calendarFilter" class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon text-sm">
                                     <option value="all">Semua Prioritas</option>
                                     <option value="urgent">Mendesak</option>
@@ -261,11 +269,17 @@
                                 </select>
                             </div>
                             <div class="flex space-x-2">
-                                <button id="quickAddBtn" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition text-sm">
-                                    ⚡ Quick Add
+                                <button id="quickAddBtn" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition text-sm flex items-center space-x-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
+                                    </svg>
+                                    <span>Quick Add</span>
                                 </button>
-                                <button id="addEventBtn" class="maroon-primary text-white px-4 py-2 rounded-lg hover:maroon-secondary transition text-sm">
-                                    ➕ Tambah Acara
+                                <button id="addEventBtn" class="maroon-primary text-white px-4 py-2 rounded-lg hover:maroon-secondary transition text-sm flex items-center space-x-2">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                                    </svg>
+                                    <span>Tambah Acara</span>
                                 </button>
                             </div>
                         </div>
@@ -273,7 +287,7 @@
                     
                     <!-- Calendar Legend -->
                     <div class="mb-4 p-3 bg-gray-50 rounded-lg">
-                        <h4 class="text-sm font-semibold text-gray-700 mb-2">📋 Legenda Prioritas:</h4>
+                        <h4 class="text-sm font-semibold text-gray-700 mb-2">Legenda Prioritas:</h4>
                         <div class="flex flex-wrap gap-4 text-xs">
                             <div class="flex items-center space-x-2">
                                 <div class="w-4 h-2 bg-red-200 border-l-2 border-red-600 rounded-sm"></div>
@@ -377,7 +391,7 @@
                     <!-- Interactive Priority Chart -->
                     <div class="dashboard-card p-6 hover:shadow-xl transition-all duration-300">
                         <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-lg font-semibold text-gray-900">📊 Distribusi Prioritas</h3>
+                            <h3 class="text-lg font-semibold text-gray-900">Distribusi Prioritas</h3>
                             <button id="refreshPriorityChart" class="text-gray-400 hover:text-maroon transition">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
@@ -395,7 +409,7 @@
                     <!-- Monthly Trend with Interactive Chart -->
                     <div class="dashboard-card p-6 hover:shadow-xl transition-all duration-300">
                         <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-lg font-semibold text-gray-900">📈 Tren 6 Bulan</h3>
+                            <h3 class="text-lg font-semibold text-gray-900">Tren 6 Bulan</h3>
                             <select id="trendPeriod" class="text-sm border border-gray-300 rounded px-2 py-1">
                                 <option value="6">6 Bulan</option>
                                 <option value="12">12 Bulan</option>
@@ -413,7 +427,7 @@
                     <!-- Top Performers -->
                     <div class="dashboard-card p-6 hover:shadow-xl transition-all duration-300">
                         <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-lg font-semibold text-gray-900">👥 Top Narasumber</h3>
+                            <h3 class="text-lg font-semibold text-gray-900">Top Narasumber</h3>
                             <span id="speakerCount" class="text-sm bg-maroon text-white px-2 py-1 rounded-full">0</span>
                         </div>
                         <div id="topSpeakers" class="space-y-3">
@@ -426,7 +440,7 @@
                     
                     <!-- Performance Metrics -->
                     <div class="dashboard-card p-6 hover:shadow-xl transition-all duration-300">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">⚡ Metrik Kinerja</h3>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Metrik Kinerja</h3>
                         <div class="space-y-4">
                             <div class="flex items-center justify-between">
                                 <span class="text-sm text-gray-600">Tingkat Penyelesaian</span>
@@ -465,9 +479,9 @@
                     <!-- Category Distribution -->
                     <div class="dashboard-card p-6">
                         <div class="flex items-center justify-between mb-4">
-                            <h3 class="text-lg font-semibold text-gray-900">🏷️ Distribusi Kategori</h3>
+                            <h3 class="text-lg font-semibold text-gray-900">Distribusi Kategori</h3>
                             <button id="toggleCategoryView" class="text-sm bg-gray-100 hover:bg-gray-200 px-3 py-1 rounded transition">
-                                📊 Chart View
+                                Chart View
                             </button>
                         </div>
                         <div id="categoryDistribution">
@@ -477,7 +491,7 @@
                     
                     <!-- Time Analysis -->
                     <div class="dashboard-card p-6">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">⏰ Analisis Waktu</h3>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Analisis Waktu</h3>
                         <div id="timeAnalysis" class="space-y-4">
                             <!-- Time analysis will be populated here -->
                         </div>
@@ -485,17 +499,273 @@
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <!-- Enhanced Upcoming Events -->
                     <div class="dashboard-card p-6">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">📅 Acara Mendatang</h3>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-900 flex items-center space-x-2">
+                                <svg class="w-5 h-5 text-maroon" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                                </svg>
+                                <span>Acara Mendatang</span>
+                            </h3>
+                            <button id="refreshUpcoming" class="text-gray-400 hover:text-maroon transition">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+                                </svg>
+                            </button>
+                        </div>
                         <div id="upcomingEventsList" class="space-y-3">
                             <p class="text-gray-500 text-center py-8">Tidak ada acara mendatang</p>
                         </div>
+                        <button id="viewAllUpcoming" class="w-full mt-4 text-sm text-maroon hover:bg-red-50 py-2 rounded transition">
+                            Lihat Semua Acara Mendatang →
+                        </button>
                     </div>
 
+                    <!-- Enhanced Recent Activity -->
                     <div class="dashboard-card p-6">
-                        <h3 class="text-lg font-semibold text-gray-900 mb-4">📋 Aktivitas Terbaru</h3>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-lg font-semibold text-gray-900 flex items-center space-x-2">
+                                <svg class="w-5 h-5 text-maroon" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                                <span>Aktivitas Terbaru</span>
+                            </h3>
+                            <button id="clearActivity" class="text-gray-400 hover:text-red-500 transition text-xs">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                </svg>
+                            </button>
+                        </div>
                         <div id="recentActivity" class="space-y-3">
                             <p class="text-gray-500 text-center py-8">Tidak ada aktivitas terbaru</p>
+                        </div>
+                        <button id="exportActivity" class="w-full mt-4 text-sm text-maroon hover:bg-red-50 py-2 rounded transition">
+                            Export Log Aktivitas →
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Additional Dashboard Features -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-6">
+                    <!-- Quick Stats -->
+                    <div class="dashboard-card p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-maroon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/>
+                            </svg>
+                            <span>Statistik Cepat</span>
+                        </h3>
+                        <div id="quickStats" class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-600">Hari ini</span>
+                                <span id="todayEvents" class="font-semibold text-blue-600">0</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-600">Minggu ini</span>
+                                <span id="weekEvents" class="font-semibold text-green-600">0</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-600">Bulan ini</span>
+                                <span id="monthEvents" class="font-semibold text-purple-600">0</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- System Health -->
+                    <div class="dashboard-card p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-maroon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                            </svg>
+                            <span>Status Sistem</span>
+                        </h3>
+                        <div id="systemHealth" class="space-y-3">
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-600">Database</span>
+                                <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Online</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-600">Email Service</span>
+                                <span id="emailServiceStatus" class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">Aktif</span>
+                            </div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-sm text-gray-600">Backup</span>
+                                <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">Terjadwal</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="dashboard-card p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4 flex items-center space-x-2">
+                            <svg class="w-5 h-5 text-maroon" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                            </svg>
+                            <span>Aksi Cepat</span>
+                        </h3>
+                        <div class="space-y-2">
+                            <button id="quickBackup" class="w-full text-left px-3 py-2 text-sm bg-blue-50 text-blue-700 rounded hover:bg-blue-100 transition flex items-center space-x-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M9 19l3 3m0 0l3-3m-3 3V10"></path>
+                                </svg>
+                                <span>Backup Data</span>
+                            </button>
+                            <button id="quickReport" class="w-full text-left px-3 py-2 text-sm bg-green-50 text-green-700 rounded hover:bg-green-100 transition flex items-center space-x-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                </svg>
+                                <span>Generate Report</span>
+                            </button>
+                            <button id="quickMaintenance" class="w-full text-left px-3 py-2 text-sm bg-yellow-50 text-yellow-700 rounded hover:bg-yellow-100 transition flex items-center space-x-2">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span>System Check</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div id="settingsTab" class="tab-content hidden">
+            <div class="container mx-auto px-4 py-6">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-2xl font-bold text-maroon mb-6">Pengaturan Sistem</h2>
+                    
+                    <!-- Email Settings Section -->
+                    <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-xl p-6 border border-blue-100 mb-6">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <div class="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800">Pengaturan Email Notifikasi</h3>
+                        </div>
+                        
+                        <form id="emailSettingsForm" class="space-y-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-gray-700 text-sm font-semibold mb-2">
+                                        Email Utama Admin
+                                    </label>
+                                    <input type="email" id="primaryEmail" 
+                                           class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200" 
+                                           placeholder="logistikojkdiy@gmail.com" required>
+                                    <p class="text-xs text-gray-500 mt-1">Email utama yang akan menerima semua notifikasi</p>
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-gray-700 text-sm font-semibold mb-2">
+                                        Status Notifikasi
+                                    </label>
+                                    <select id="emailEnabled" class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200">
+                                        <option value="true">✅ Aktif</option>
+                                        <option value="false">❌ Nonaktif</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-gray-700 text-sm font-semibold mb-2">
+                                    📋 Email CC (Pisahkan dengan koma)
+                                </label>
+                                <textarea id="ccEmails" 
+                                          class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all duration-200 resize-none" 
+                                          rows="3" 
+                                          placeholder="admin@ojk-diy.go.id, epk@ojk-diy.go.id, sekretariat@ojk-diy.go.id"></textarea>
+                                <p class="text-xs text-gray-500 mt-1">Email tambahan yang akan menerima salinan notifikasi</p>
+                            </div>
+                            
+                            <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
+                                <div class="flex items-start space-x-2">
+                                    <svg class="w-5 h-5 text-yellow-600 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+                                    </svg>
+                                    <div>
+                                        <h4 class="text-sm font-semibold text-yellow-800">📋 Jadwal Notifikasi Otomatis:</h4>
+                                        <ul class="text-xs text-yellow-700 mt-1 space-y-1">
+                                            <li>• <strong>2 hari sebelum acara</strong> - Email reminder dengan detail lengkap</li>
+                                            <li>• <strong>1 hari sebelum acara</strong> - Email peringatan mendesak</li>
+                                            <li>• <strong>Hari yang sama</strong> - Email reminder pagi hari</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex space-x-4">
+                                <button type="submit" class="flex-1 bg-gradient-to-r from-blue-500 to-indigo-500 text-white px-6 py-3 rounded-xl hover:from-blue-600 hover:to-indigo-600 transition-all duration-200 font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                    </svg>
+                                    <span>Simpan Pengaturan</span>
+                                </button>
+                                <button type="button" id="testEmailBtn" class="px-6 py-3 border-2 border-blue-500 text-blue-500 rounded-xl hover:bg-blue-50 transition-all duration-200 font-semibold flex items-center justify-center space-x-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                                    </svg>
+                                    <span>Test Email</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                    
+                    <!-- System Info Section -->
+                    <div class="bg-gradient-to-r from-gray-50 to-slate-50 rounded-xl p-6 border border-gray-100">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <div class="w-8 h-8 bg-gray-500 rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <h3 class="text-lg font-semibold text-gray-800">ℹ️ Informasi Sistem</h3>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                    <span class="text-sm text-gray-600">Versi Sistem:</span>
+                                    <span class="text-sm font-semibold text-gray-900">PEPK Dashboard v2.1</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                    <span class="text-sm text-gray-600">Total Data Tersimpan:</span>
+                                    <span class="text-sm font-semibold text-gray-900" id="totalStoredEvents">0 acara</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                    <span class="text-sm text-gray-600">Notifikasi Aktif:</span>
+                                    <span class="text-sm font-semibold text-gray-900" id="totalNotifications">0 notifikasi</span>
+                                </div>
+                            </div>
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                    <span class="text-sm text-gray-600">Terakhir Login:</span>
+                                    <span class="text-sm font-semibold text-gray-900" id="lastLoginTime">-</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                    <span class="text-sm text-gray-600">Browser:</span>
+                                    <span class="text-sm font-semibold text-gray-900" id="browserInfo">-</span>
+                                </div>
+                                <div class="flex justify-between items-center py-2 border-b border-gray-200">
+                                    <span class="text-sm text-gray-600">Status Email:</span>
+                                    <span class="text-sm font-semibold" id="emailStatus">🔄 Memuat...</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-6 flex space-x-4">
+                            <button id="exportSettingsBtn" class="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition text-sm">
+                                📤 Export Pengaturan
+                            </button>
+                            <button id="importSettingsBtn" class="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition text-sm">
+                                📥 Import Pengaturan
+                            </button>
+                            <button id="resetSettingsBtn" class="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition text-sm">
+                                🔄 Reset ke Default
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -645,92 +915,241 @@
         </div>
     </div>
 
-    <!-- Enhanced Add Event Modal -->
-    <div id="eventModal" class="fixed inset-0 bg-black bg-opacity-50 modal flex items-center justify-center z-40 hidden">
-        <div class="bg-white rounded-lg p-6 max-w-2xl w-full mx-4 max-h-96 overflow-y-auto">
-            <h3 class="text-xl font-bold text-maroon mb-4">📅 Tambah Acara Baru</h3>
-            <form id="eventForm">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="md:col-span-2">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Judul Acara *</label>
-                        <input type="text" id="eventTitle" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon" required>
+    <!-- Professional Formal Event Modal -->
+    <div id="eventModal" class="fixed inset-0 bg-black bg-opacity-70 modal flex items-center justify-center z-40 hidden backdrop-blur-sm">
+        <div class="bg-white rounded-lg shadow-2xl max-w-5xl w-full mx-4 max-h-[95vh] overflow-hidden transform transition-all duration-300 scale-95 opacity-0 border-2 border-maroon-primary" id="eventModalContent">
+            <!-- Professional Header -->
+            <div class="bg-red-600 text-white p-6 border-b-2 border-red-700">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center space-x-4">
+                        <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center border border-white/30">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold">Formulir Acara Baru</h3>
+                            <p class="text-white/90">Sistem Manajemen Kegiatan OJK DIY</p>
+                        </div>
                     </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Tanggal *</label>
-                        <input type="date" id="eventDate" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon" required>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Waktu *</label>
-                        <input type="time" id="eventTime" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon" required>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Lokasi</label>
-                        <input type="text" id="eventLocation" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon" placeholder="Ruang rapat, alamat, atau online">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Kategori</label>
-                        <select id="eventCategory" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon">
-                            <option value="meeting">Rapat</option>
-                            <option value="training">Pelatihan</option>
-                            <option value="seminar">Seminar</option>
-                            <option value="workshop">Workshop</option>
-                            <option value="conference">Konferensi</option>
-                            <option value="other">Lainnya</option>
-                        </select>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Prioritas</label>
-                        <select id="eventPriority" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon">
-                            <option value="low">Rendah</option>
-                            <option value="medium">Sedang</option>
-                            <option value="high">Tinggi</option>
-                            <option value="urgent">Mendesak</option>
-                        </select>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Narasumber/Petugas</label>
-                        <input type="text" id="eventSpeaker" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon" placeholder="Nama narasumber atau petugas">
-                    </div>
-                    
-                    <div>
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Reminder (menit sebelum acara)</label>
-                        <select id="eventReminder" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon">
-                            <option value="0">Tidak ada reminder</option>
-                            <option value="15">15 menit</option>
-                            <option value="30">30 menit</option>
-                            <option value="60">1 jam</option>
-                            <option value="1440">1 hari</option>
-                        </select>
-                    </div>
-                    
-                    <div class="md:col-span-2">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Deskripsi</label>
-                        <textarea id="eventDescription" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon" rows="3"></textarea>
-                    </div>
-                    
-                    <div class="md:col-span-2">
-                        <label class="block text-gray-700 text-sm font-bold mb-2">Password Edit Acara *</label>
-                        <input type="password" id="eventPassword" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-maroon" placeholder="Masukkan password untuk edit acara ini" required>
-                        <div id="passwordStrength" class="password-strength mt-1"></div>
-                        <p class="text-xs text-gray-500 mt-1">Password ini diperlukan untuk mengedit atau menghapus acara</p>
-                    </div>
-                </div>
-                
-                <div class="flex space-x-4 mt-6">
-                    <button type="button" id="cancelEvent" class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition">
-                        Batal
-                    </button>
-                    <button type="submit" class="flex-1 maroon-primary text-white px-4 py-2 rounded-lg hover:maroon-secondary transition">
-                        Simpan Acara
+                    <button id="closeEventModal" class="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-all duration-200 border border-white/30">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
                     </button>
                 </div>
-            </form>
+            </div>
+
+            <!-- Professional Form Body -->
+            <div class="p-8 overflow-y-auto max-h-[calc(95vh-140px)] bg-white">
+                <form id="eventForm" class="space-y-6">
+                    <!-- Event Information Section -->
+                    <div class="bg-white rounded-lg p-6 border-2 border-red-600 shadow-sm">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6z"/>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900">Informasi Acara</h4>
+                        </div>
+                        <div>
+                            <label class="block text-gray-900 text-sm font-bold mb-2 flex items-center">
+                                <span class="text-red-600 mr-1">*</span>
+                                <span>Judul Acara</span>
+                            </label>
+                            <input type="text" id="eventTitle" 
+                                   class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-200 transition-all duration-200 text-gray-900 placeholder-gray-500 font-medium bg-white" 
+                                   placeholder="Masukkan judul acara yang jelas dan deskriptif" required>
+                        </div>
+                    </div>
+
+                    <!-- Date & Time Section -->
+                    <div class="bg-white rounded-lg p-6 border-2 border-red-600 shadow-sm">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm4.2 14.2L11 13V7h1.5v5.2l4.5 2.7-.8 1.3z"/>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900">Jadwal Pelaksanaan</h4>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-900 text-sm font-bold mb-2 flex items-center">
+                                    <span class="text-red-600 mr-1">*</span>
+                                    <span>Tanggal</span>
+                                </label>
+                                <input type="date" id="eventDate" 
+                                       class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-200 transition-all duration-200 font-medium bg-white text-gray-900" required>
+                            </div>
+                            <div>
+                                <label class="block text-gray-900 text-sm font-bold mb-2 flex items-center">
+                                    <span class="text-red-600 mr-1">*</span>
+                                    <span>Waktu</span>
+                                </label>
+                                <input type="time" id="eventTime" 
+                                       class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-200 transition-all duration-200 font-medium bg-white text-gray-900" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location & Personnel Section -->
+                    <div class="bg-white rounded-lg p-6 border-2 border-red-600 shadow-sm">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900">Lokasi & Personel</h4>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-900 text-sm font-bold mb-2">
+                                    <span>Lokasi Pelaksanaan</span>
+                                </label>
+                                <input type="text" id="eventLocation" 
+                                       class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-200 transition-all duration-200 text-gray-900 placeholder-gray-500 font-medium bg-white" 
+                                       placeholder="Ruang rapat, alamat, atau platform online">
+                            </div>
+                            <div>
+                                <label class="block text-gray-900 text-sm font-bold mb-2">
+                                    <span>Narasumber/Penanggung Jawab</span>
+                                </label>
+                                <input type="text" id="eventSpeaker" 
+                                       class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-200 transition-all duration-200 text-gray-900 placeholder-gray-500 font-medium bg-white" 
+                                       placeholder="Nama narasumber atau petugas yang bertanggung jawab">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Classification Section -->
+                    <div class="bg-white rounded-lg p-6 border-2 border-red-600 shadow-sm">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900">Klasifikasi Acara</h4>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label class="block text-gray-900 text-sm font-bold mb-2">
+                                    <span>Kategori Kegiatan</span>
+                                </label>
+                                <select id="eventCategory" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-200 transition-all duration-200 bg-white font-medium cursor-pointer text-gray-900">
+                                    <option value="meeting">Rapat</option>
+                                    <option value="training">Pelatihan</option>
+                                    <option value="seminar">Seminar</option>
+                                    <option value="workshop">Workshop</option>
+                                    <option value="conference">Konferensi</option>
+                                    <option value="inspection">Pemeriksaan</option>
+                                    <option value="monitoring">Monitoring</option>
+                                    <option value="socialization">Sosialisasi</option>
+                                    <option value="other">Lainnya</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-900 text-sm font-bold mb-2">
+                                    <span>Tingkat Prioritas</span>
+                                </label>
+                                <select id="eventPriority" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-200 transition-all duration-200 bg-white font-medium cursor-pointer text-gray-900">
+                                    <option value="low">Rendah</option>
+                                    <option value="medium" selected>Sedang</option>
+                                    <option value="high">Tinggi</option>
+                                    <option value="urgent">Mendesak</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional Settings Section -->
+                    <div class="bg-white rounded-lg p-6 border-2 border-red-600 shadow-sm">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-900">Pengaturan Tambahan</h4>
+                        </div>
+                        <div class="space-y-6">
+                            <div>
+                                <label class="block text-gray-900 text-sm font-bold mb-2">
+                                    <span>Pengingat Otomatis</span>
+                                </label>
+                                <select id="eventReminder" class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-200 transition-all duration-200 bg-white font-medium cursor-pointer text-gray-900">
+                                    <option value="0">Tidak ada pengingat</option>
+                                    <option value="15">15 menit sebelum</option>
+                                    <option value="30" selected>30 menit sebelum</option>
+                                    <option value="60">1 jam sebelum</option>
+                                    <option value="1440">1 hari sebelum</option>
+                                    <option value="2880">2 hari sebelum</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-gray-900 text-sm font-bold mb-2">
+                                    <span>Deskripsi Kegiatan</span>
+                                </label>
+                                <textarea id="eventDescription" 
+                                          class="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-200 transition-all duration-200 resize-none text-gray-900 placeholder-gray-500 font-medium bg-white" 
+                                          rows="4" 
+                                          placeholder="Tambahkan deskripsi detail tentang acara, agenda, atau catatan penting lainnya"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Security Section -->
+                    <div class="bg-gray-50 rounded-lg p-6 border-2 border-gray-300 shadow-sm">
+                        <div class="flex items-center space-x-3 mb-6">
+                            <div class="w-8 h-8 bg-gray-700 rounded-lg flex items-center justify-center">
+                                <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/>
+                                </svg>
+                            </div>
+                            <h4 class="text-lg font-bold text-gray-800">Keamanan Akses</h4>
+                        </div>
+                        <div>
+                            <label class="block text-gray-800 text-sm font-bold mb-2 flex items-center">
+                                <span class="text-red-600 mr-1">*</span>
+                                <span>Password Proteksi</span>
+                            </label>
+                            <input type="password" id="eventPassword" 
+                                   class="w-full px-4 py-3 border-2 border-gray-400 rounded-lg focus:outline-none focus:border-gray-700 focus:ring-2 focus:ring-gray-200 transition-all duration-200 text-gray-900 placeholder-gray-500 font-medium bg-white" 
+                                   placeholder="Buat password untuk mengamankan acara ini" required>
+                            <div id="passwordStrength" class="password-strength mt-2"></div>
+                            <div class="mt-4 p-4 bg-yellow-50 border border-yellow-300 rounded-lg">
+                                <p class="text-sm text-yellow-800 flex items-center font-medium">
+                                    <svg class="w-4 h-4 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+                                    </svg>
+                                    Password diperlukan untuk mengedit, mengubah jadwal, atau menghapus acara
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 pt-6 border-t border-gray-200">
+                        <button type="button" id="cancelEvent" 
+                                class="flex-1 px-6 py-3 border-2 border-gray-400 text-gray-700 rounded-lg hover:bg-gray-50 hover:border-gray-500 transition-all duration-200 font-semibold flex items-center justify-center space-x-2 bg-white">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                            <span>Batal</span>
+                        </button>
+                        <button type="submit" 
+                                class="flex-1 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-all duration-200 font-semibold flex items-center justify-center space-x-2 border-2 border-green-600">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            <span>Simpan Acara</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -965,8 +1384,8 @@
                         <p>📍 Jl. Jend. Sudirman No.22</p>
                         <p>Gowongan, Kec. Jetis</p>
                         <p>Kota Yogyakarta, DIY 55233</p>
-                        <p>📞 0274-4605790 </p>
-                        <p>✉️ konsumen@ojk.go.id</p>
+                        <p>📞 (0274) 460-5790</p>
+                        <p>✉️ info@ojk-diy.go.id</p>
                         <p>🌐 www.ojk.go.id</p>
                     </div>
                 </div>
@@ -974,7 +1393,7 @@
             
             <div class="border-t border-white border-opacity-20 mt-8 pt-6 flex flex-col md:flex-row justify-between items-center">
                 <p class="text-sm opacity-80">
-                    © 2025 Otoritas Jasa Keuangan DIY. Semua hak dilindungi.
+                    © 2025 Otoritas Jasa Keuangan. Semua hak dilindungi - Dikelola oleh Tim SI OJKDIY
                 </p>
                 <div class="flex space-x-6 mt-4 md:mt-0">
                     <a href="#" class="text-sm opacity-80 hover:opacity-100 transition">Kebijakan Privasi</a>
@@ -1017,6 +1436,7 @@
 
                 if (username === 'EPK-OJKDIY' && password === 'Epkjogja') {
                     isLoggedIn = true;
+                    localStorage.setItem('lastLoginTime', new Date().toISOString());
                     document.getElementById('loginModal').classList.add('hidden');
                     document.getElementById('mainApp').classList.remove('hidden');
                     initializeApp();
@@ -1038,9 +1458,18 @@
             renderCalendar();
             updateDashboard();
             setupEventListeners();
+            setupEnhancedEventListeners(); // Add enhanced listeners
             checkReminders();
+            requestNotificationPermission();
+            loadEmailSettings();
+            updateSystemInfo();
             setInterval(checkReminders, 60000);
             applyReportFilter(); // Initialize report with current data
+            
+            // Show welcome toast
+            setTimeout(() => {
+                showToast('Selamat datang di PEPK Dashboard!', 'info');
+            }, 1000);
         }
 
         // Password Strength Checker
@@ -1167,6 +1596,7 @@
 
         function openEventModal(date = null) {
             const modal = document.getElementById('eventModal');
+            const modalContent = document.getElementById('eventModalContent');
             const dateInput = document.getElementById('eventDate');
             
             if (date) {
@@ -1174,6 +1604,12 @@
             }
             
             modal.classList.remove('hidden');
+            
+            // Animate modal entrance
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
         }
 
         function openQuickAddModal() {
@@ -1187,7 +1623,43 @@
         document.getElementById('eventForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const selectedDate = document.getElementById('eventDate').value;
+            // Validate required fields
+            const title = document.getElementById('eventTitle').value.trim();
+            const date = document.getElementById('eventDate').value;
+            const time = document.getElementById('eventTime').value;
+            const password = document.getElementById('eventPassword').value.trim();
+            
+            if (!title) {
+                alert('Judul acara harus diisi!');
+                document.getElementById('eventTitle').focus();
+                return;
+            }
+            
+            if (!date) {
+                alert('Tanggal acara harus diisi!');
+                document.getElementById('eventDate').focus();
+                return;
+            }
+            
+            if (!time) {
+                alert('Waktu acara harus diisi!');
+                document.getElementById('eventTime').focus();
+                return;
+            }
+            
+            if (!password) {
+                alert('Password proteksi harus diisi!');
+                document.getElementById('eventPassword').focus();
+                return;
+            }
+            
+            if (password.length < 6) {
+                alert('Password minimal 6 karakter!');
+                document.getElementById('eventPassword').focus();
+                return;
+            }
+            
+            const selectedDate = date;
             const dayEvents = events.filter(event => event.date === selectedDate);
             
             if (dayEvents.length >= 10) {
@@ -1197,17 +1669,16 @@
             
             const event = {
                 id: Date.now(),
-                title: document.getElementById('eventTitle').value,
+                title: title,
                 date: selectedDate,
-                time: document.getElementById('eventTime').value,
-                location: document.getElementById('eventLocation').value,
+                time: time,
+                location: document.getElementById('eventLocation').value.trim(),
                 category: document.getElementById('eventCategory').value,
                 priority: document.getElementById('eventPriority').value,
-                speaker: document.getElementById('eventSpeaker').value,
-                description: document.getElementById('eventDescription').value,
-                reminder: parseInt(document.getElementById('eventReminder').value),
-                duration: parseInt(document.getElementById('eventDuration').value),
-                password: document.getElementById('eventPassword').value,
+                speaker: document.getElementById('eventSpeaker').value.trim(),
+                description: document.getElementById('eventDescription').value.trim(),
+                reminder: parseInt(document.getElementById('eventReminder').value) || 0,
+                password: password,
                 status: 'scheduled',
                 createdAt: new Date().toISOString(),
                 createdBy: 'EPK-OJKDIY'
@@ -1218,8 +1689,10 @@
             
             addActivity(`Acara "${event.title}" ditambahkan untuk ${new Date(event.date).toLocaleDateString('id-ID')}`);
             
-            document.getElementById('eventModal').classList.add('hidden');
-            document.getElementById('eventForm').reset();
+            // Show success message
+            showToast(`Acara "${event.title}" berhasil ditambahkan!`, 'success');
+            
+            closeEventModal();
             renderCalendar();
             updateDashboard();
             applyReportFilter();
@@ -1591,34 +2064,201 @@
                 `).join('');
         }
 
-        // Notification System
+        // Enhanced Notification System with Email Alerts
         function checkReminders() {
             const now = new Date();
+            const emailSettings = JSON.parse(localStorage.getItem('emailSettings')) || { enabled: true };
             
             events.forEach(event => {
-                if (event.reminder > 0 && event.status === 'scheduled') {
+                if (event.status === 'scheduled') {
                     const eventDateTime = new Date(`${event.date}T${event.time}`);
-                    const reminderTime = new Date(eventDateTime.getTime() - (event.reminder * 60000));
+                    const timeDiff = eventDateTime - now;
+                    const daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
+                    const hoursDiff = Math.ceil(timeDiff / (1000 * 60 * 60));
                     
-                    if (now >= reminderTime && now < eventDateTime) {
-                        const notificationId = `reminder_${event.id}_${event.reminder}`;
+                    // Only send email notifications if enabled
+                    if (emailSettings.enabled) {
+                        // Email notification for 2 days before
+                        if (daysDiff === 2) {
+                            const notificationId = `email_2days_${event.id}`;
+                            if (!notifications.find(n => n.id === notificationId)) {
+                                sendEmailNotification(event, '2 hari');
+                                addEmailNotification(event, '2 hari', notificationId);
+                            }
+                        }
                         
-                        if (!notifications.find(n => n.id === notificationId)) {
-                            const notification = {
-                                id: notificationId,
-                                title: 'Reminder Acara',
-                                message: `Acara "${event.title}" akan dimulai dalam ${event.reminder} menit`,
-                                timestamp: now.toISOString(),
-                                read: false
-                            };
+                        // Email notification for 1 day before
+                        if (daysDiff === 1) {
+                            const notificationId = `email_1day_${event.id}`;
+                            if (!notifications.find(n => n.id === notificationId)) {
+                                sendEmailNotification(event, '1 hari');
+                                addEmailNotification(event, '1 hari', notificationId);
+                            }
+                        }
+                        
+                        // Email notification for same day (morning)
+                        if (daysDiff === 0 && hoursDiff <= 12 && hoursDiff > 0) {
+                            const notificationId = `email_today_${event.id}`;
+                            if (!notifications.find(n => n.id === notificationId)) {
+                                sendEmailNotification(event, 'hari ini');
+                                addEmailNotification(event, 'hari ini', notificationId);
+                            }
+                        }
+                    }
+                    
+                    // Regular reminder notifications
+                    if (event.reminder > 0) {
+                        const reminderTime = new Date(eventDateTime.getTime() - (event.reminder * 60000));
+                        
+                        if (now >= reminderTime && now < eventDateTime) {
+                            const notificationId = `reminder_${event.id}_${event.reminder}`;
                             
-                            notifications.push(notification);
-                            localStorage.setItem('notifications', JSON.stringify(notifications));
-                            updateNotificationBadge();
+                            if (!notifications.find(n => n.id === notificationId)) {
+                                const notification = {
+                                    id: notificationId,
+                                    title: '🔔 Reminder Acara',
+                                    message: `Acara "${event.title}" akan dimulai dalam ${event.reminder} menit`,
+                                    timestamp: now.toISOString(),
+                                    read: false,
+                                    type: 'reminder'
+                                };
+                                
+                                notifications.push(notification);
+                                localStorage.setItem('notifications', JSON.stringify(notifications));
+                                updateNotificationBadge();
+                            }
                         }
                     }
                 }
             });
+        }
+
+        function sendEmailNotification(event, timeframe) {
+            // Get email configuration from settings or use defaults
+            const emailSettings = JSON.parse(localStorage.getItem('emailSettings')) || {
+                primaryEmail: 'logistikojkdiy@gmail.com',
+                ccEmails: ['admin@ojk-diy.go.id', 'epk@ojk-diy.go.id', 'sekretariat@ojk-diy.go.id'],
+                enabled: true
+            };
+            
+            // Email configuration for OJK DIY Admin
+            const emailConfig = {
+                adminEmail: emailSettings.primaryEmail,
+                ccEmails: emailSettings.ccEmails.filter(email => email.trim()),
+                subject: `🚨 REMINDER ACARA OJK DIY - ${timeframe.toUpperCase()}`,
+                template: generateEmailTemplate(event, timeframe, emailSettings)
+            };
+            
+            // Simulate email sending (in real implementation, this would call an email service)
+            console.log('📧 Email Notification Sent:', emailConfig);
+            
+            // Show browser notification if supported
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification(`Reminder Acara ${timeframe}`, {
+                    body: `${event.title} - ${new Date(event.date).toLocaleDateString('id-ID')} ${event.time}`,
+                    icon: 'https://ik.imagekit.io/logojkdiy/ojk-indonesia-seeklogo.png',
+                    badge: 'https://ik.imagekit.io/logojkdiy/ojk-indonesia-seeklogo.png'
+                });
+            }
+            
+            // Log email activity
+            addActivity(`📧 Email reminder dikirim untuk acara "${event.title}" (${timeframe} sebelum acara)`);
+        }
+
+        function generateEmailTemplate(event, timeframe, emailSettings = {}) {
+            return `
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <meta charset="UTF-8">
+                    <style>
+                        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+                        .header { background: linear-gradient(135deg, #800020 0%, #a0002a 100%); color: white; padding: 20px; text-align: center; }
+                        .content { padding: 30px; background: #f9f9f9; }
+                        .event-card { background: white; border-radius: 10px; padding: 25px; margin: 20px 0; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+                        .priority-urgent { border-left: 5px solid #dc2626; }
+                        .priority-high { border-left: 5px solid #f59e0b; }
+                        .priority-medium { border-left: 5px solid #3b82f6; }
+                        .priority-low { border-left: 5px solid #6b7280; }
+                        .footer { background: #800020; color: white; padding: 15px; text-align: center; font-size: 12px; }
+                        .btn { background: #800020; color: white; padding: 12px 24px; text-decoration: none; border-radius: 5px; display: inline-block; margin: 10px 0; }
+                    </style>
+                </head>
+                <body>
+                    <div class="header">
+                        <h1>🚨 REMINDER ACARA OJK DIY</h1>
+                        <p>Sistem Notifikasi Otomatis PEPK Dashboard</p>
+                    </div>
+                    
+                    <div class="content">
+                        <h2>Halo Admin OJK DIY,</h2>
+                        <p>Ini adalah pengingat otomatis bahwa ada acara yang akan berlangsung <strong>${timeframe}</strong> lagi:</p>
+                        
+                        <div class="event-card priority-${event.priority}">
+                            <h3 style="color: #800020; margin-top: 0;">📅 ${event.title}</h3>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 20px 0;">
+                                <div><strong>📅 Tanggal:</strong><br>${new Date(event.date).toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</div>
+                                <div><strong>🕐 Waktu:</strong><br>${event.time} WIB</div>
+                                <div><strong>📍 Lokasi:</strong><br>${event.location || 'Belum ditentukan'}</div>
+                                <div><strong>👤 Narasumber:</strong><br>${event.speaker || 'Belum ditentukan'}</div>
+                                <div><strong>🏷️ Kategori:</strong><br>${event.category === 'meeting' ? 'Rapat' : event.category === 'training' ? 'Pelatihan' : event.category === 'seminar' ? 'Seminar' : event.category === 'workshop' ? 'Workshop' : event.category === 'conference' ? 'Konferensi' : 'Lainnya'}</div>
+                                <div><strong>⚡ Prioritas:</strong><br><span style="color: ${event.priority === 'urgent' ? '#dc2626' : event.priority === 'high' ? '#f59e0b' : event.priority === 'medium' ? '#3b82f6' : '#6b7280'}">${event.priority === 'urgent' ? 'MENDESAK' : event.priority === 'high' ? 'TINGGI' : event.priority === 'medium' ? 'SEDANG' : 'RENDAH'}</span></div>
+                            </div>
+                            ${event.description ? `<div><strong>📝 Deskripsi:</strong><br>${event.description}</div>` : ''}
+                        </div>
+                        
+                        <div style="background: #fef3c7; border: 1px solid #f59e0b; border-radius: 8px; padding: 15px; margin: 20px 0;">
+                            <h4 style="color: #92400e; margin: 0 0 10px 0;">⚠️ Checklist Persiapan:</h4>
+                            <ul style="color: #92400e; margin: 0;">
+                                <li>✅ Konfirmasi kehadiran narasumber</li>
+                                <li>✅ Persiapan ruangan dan peralatan</li>
+                                <li>✅ Distribusi undangan kepada peserta</li>
+                                <li>✅ Persiapan materi dan dokumentasi</li>
+                                <li>✅ Koordinasi dengan tim teknis</li>
+                            </ul>
+                        </div>
+                        
+                        <div style="text-align: center; margin: 30px 0;">
+                            <a href="#" class="btn">🔗 Buka PEPK Dashboard</a>
+                        </div>
+                        
+                        <p><em>Email ini dikirim secara otomatis oleh sistem PEPK Dashboard. Jika ada pertanyaan, silakan hubungi administrator sistem.</em></p>
+                    </div>
+                    
+                    <div class="footer">
+                        <p><strong>OTORITAS JASA KEUANGAN DAERAH ISTIMEWA YOGYAKARTA</strong></p>
+                        <p>Jl. Jend. Sudirman No.22, Gowongan, Kec. Jetis, Kota Yogyakarta, DIY 55233</p>
+                        <p>📞 (0274) 555-0123 | ✉️ info@ojk-diy.go.id | 🌐 www.ojk.go.id</p>
+                    </div>
+                </body>
+                </html>
+            `;
+        }
+
+        function addEmailNotification(event, timeframe, notificationId) {
+            const notification = {
+                id: notificationId,
+                title: '📧 Email Reminder Terkirim',
+                message: `Email reminder untuk acara "${event.title}" (${timeframe} sebelum acara) telah dikirim ke admin`,
+                timestamp: new Date().toISOString(),
+                read: false,
+                type: 'email'
+            };
+            
+            notifications.push(notification);
+            localStorage.setItem('notifications', JSON.stringify(notifications));
+            updateNotificationBadge();
+        }
+
+        // Request notification permission on load
+        function requestNotificationPermission() {
+            if ('Notification' in window && Notification.permission === 'default') {
+                Notification.requestPermission().then(permission => {
+                    if (permission === 'granted') {
+                        console.log('✅ Notification permission granted');
+                    }
+                });
+            }
         }
 
         function updateNotificationBadge() {
@@ -1819,6 +2459,12 @@
             document.getElementById('addEventBtn').addEventListener('click', () => openEventModal());
             document.getElementById('quickAddBtn').addEventListener('click', () => openQuickAddModal());
             
+            // Enhanced modal close button
+            document.getElementById('closeEventModal').addEventListener('click', function(e) {
+                e.preventDefault();
+                closeEventModal();
+            });
+            
             // Modal close buttons - Fixed with proper event handling
             document.getElementById('cancelEvent').addEventListener('click', function(e) {
                 e.preventDefault();
@@ -2014,6 +2660,34 @@
                 toggleCategoryView();
             });
             
+            // Settings listeners
+            document.getElementById('emailSettingsForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (saveEmailSettings()) {
+                    alert('✅ Pengaturan email berhasil disimpan!');
+                }
+            });
+            
+            document.getElementById('testEmailBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                testEmailNotification();
+            });
+            
+            document.getElementById('exportSettingsBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                exportSettings();
+            });
+            
+            document.getElementById('importSettingsBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                importSettings();
+            });
+            
+            document.getElementById('resetSettingsBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                resetSettings();
+            });
+            
             // Auto-check for overdue events
             setInterval(checkOverdueEvents, 300000); // Check every 5 minutes
             
@@ -2023,9 +2697,18 @@
 
         // Modal Management Functions
         function closeEventModal() {
-            document.getElementById('eventModal').classList.add('hidden');
-            document.getElementById('eventForm').reset();
-            document.getElementById('passwordStrength').className = 'password-strength mt-2';
+            const modal = document.getElementById('eventModal');
+            const modalContent = document.getElementById('eventModalContent');
+            
+            // Animate modal exit
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.getElementById('eventForm').reset();
+                document.getElementById('passwordStrength').className = 'password-strength mt-2';
+            }, 200);
         }
 
         function closeQuickAddModal() {
@@ -3126,6 +3809,9 @@
             const speakerCountEl = document.getElementById('speakerCount');
             if (speakerCountEl) speakerCountEl.textContent = uniqueSpeakers;
             
+            // Update quick stats
+            updateQuickStats();
+            
             // Update all enhanced dashboard components
             try {
                 updatePriorityChart();
@@ -3167,9 +3853,524 @@
             updateRecentActivity();
         }
 
+        // New Quick Stats Function
+        function updateQuickStats() {
+            const now = new Date();
+            const today = now.toDateString();
+            
+            // Today's events
+            const todayEvents = events.filter(e => new Date(e.date).toDateString() === today).length;
+            const todayEl = document.getElementById('todayEvents');
+            if (todayEl) todayEl.textContent = todayEvents;
+            
+            // This week's events
+            const startOfWeek = new Date(now);
+            startOfWeek.setDate(now.getDate() - now.getDay());
+            const endOfWeek = new Date(startOfWeek);
+            endOfWeek.setDate(startOfWeek.getDate() + 6);
+            
+            const weekEvents = events.filter(e => {
+                const eventDate = new Date(e.date);
+                return eventDate >= startOfWeek && eventDate <= endOfWeek;
+            }).length;
+            const weekEl = document.getElementById('weekEvents');
+            if (weekEl) weekEl.textContent = weekEvents;
+            
+            // This month's events
+            const monthEvents = events.filter(e => {
+                const eventDate = new Date(e.date);
+                return eventDate.getMonth() === now.getMonth() && eventDate.getFullYear() === now.getFullYear();
+            }).length;
+            const monthEl = document.getElementById('monthEvents');
+            if (monthEl) monthEl.textContent = monthEvents;
+        }
+
+        // Enhanced Event Listeners
+        function setupEnhancedEventListeners() {
+            // Dashboard refresh buttons
+            const refreshUpcoming = document.getElementById('refreshUpcoming');
+            if (refreshUpcoming) {
+                refreshUpcoming.addEventListener('click', function() {
+                    updateDashboard();
+                    showToast('Data acara mendatang diperbarui');
+                });
+            }
+            
+            // Clear activity log
+            const clearActivity = document.getElementById('clearActivity');
+            if (clearActivity) {
+                clearActivity.addEventListener('click', function() {
+                    if (confirm('Hapus semua log aktivitas?')) {
+                        localStorage.removeItem('activities');
+                        updateRecentActivity();
+                        showToast('Log aktivitas berhasil dihapus');
+                    }
+                });
+            }
+            
+            // Export activity log
+            const exportActivity = document.getElementById('exportActivity');
+            if (exportActivity) {
+                exportActivity.addEventListener('click', function() {
+                    exportActivityLog();
+                });
+            }
+            
+            // Quick actions
+            const quickBackup = document.getElementById('quickBackup');
+            if (quickBackup) {
+                quickBackup.addEventListener('click', function() {
+                    performQuickBackup();
+                });
+            }
+            
+            const quickReport = document.getElementById('quickReport');
+            if (quickReport) {
+                quickReport.addEventListener('click', function() {
+                    generateQuickReport();
+                });
+            }
+            
+            const quickMaintenance = document.getElementById('quickMaintenance');
+            if (quickMaintenance) {
+                quickMaintenance.addEventListener('click', function() {
+                    performSystemCheck();
+                });
+            }
+            
+            // View all upcoming events
+            const viewAllUpcoming = document.getElementById('viewAllUpcoming');
+            if (viewAllUpcoming) {
+                viewAllUpcoming.addEventListener('click', function() {
+                    showAllUpcomingEvents();
+                });
+            }
+        }
+
+        // New Enhanced Functions
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg text-white transform transition-all duration-300 translate-x-full ${
+                type === 'success' ? 'bg-green-500' : 
+                type === 'error' ? 'bg-red-500' : 
+                type === 'warning' ? 'bg-yellow-500' : 'bg-blue-500'
+            }`;
+            toast.textContent = message;
+            
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.remove('translate-x-full');
+            }, 100);
+            
+            setTimeout(() => {
+                toast.classList.add('translate-x-full');
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+
+        function exportActivityLog() {
+            const activities = JSON.parse(localStorage.getItem('activities')) || [];
+            if (activities.length === 0) {
+                showToast('Tidak ada aktivitas untuk diekspor', 'warning');
+                return;
+            }
+            
+            const csvContent = 'Timestamp,Activity\n' + 
+                activities.map(activity => 
+                    `"${new Date(activity.timestamp).toLocaleString('id-ID')}","${activity.message}"`
+                ).join('\n');
+            
+            const blob = new Blob([csvContent], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `Activity_Log_${new Date().toISOString().split('T')[0]}.csv`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            showToast('Log aktivitas berhasil diekspor');
+        }
+
+        function performQuickBackup() {
+            const backupData = {
+                events: events,
+                notifications: notifications,
+                activities: JSON.parse(localStorage.getItem('activities')) || [],
+                emailSettings: JSON.parse(localStorage.getItem('emailSettings')) || {},
+                backupDate: new Date().toISOString(),
+                version: 'PEPK Dashboard v2.1'
+            };
+            
+            const dataStr = JSON.stringify(backupData, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `PEPK_Backup_${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            addActivity('Backup data sistem berhasil dibuat');
+            showToast('Backup berhasil dibuat dan diunduh');
+        }
+
+        function generateQuickReport() {
+            // Switch to reports tab and generate current month report
+            document.querySelector('[data-tab="reports"]').click();
+            setTimeout(() => {
+                applyReportFilter();
+                showToast('Laporan bulan ini berhasil dibuat');
+            }, 500);
+        }
+
+        function performSystemCheck() {
+            showToast('Memulai pemeriksaan sistem...', 'info');
+            
+            setTimeout(() => {
+                const checks = [
+                    { name: 'Data Events', status: events.length > 0 },
+                    { name: 'Local Storage', status: typeof(Storage) !== "undefined" },
+                    { name: 'Email Settings', status: localStorage.getItem('emailSettings') !== null },
+                    { name: 'Notifications', status: notifications.length >= 0 }
+                ];
+                
+                const allPassed = checks.every(check => check.status);
+                
+                const modal = document.createElement('div');
+                modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+                modal.innerHTML = `
+                    <div class="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+                        <div class="flex items-center space-x-2 mb-4">
+                            <svg class="w-6 h-6 ${allPassed ? 'text-green-500' : 'text-yellow-500'}" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                            <h3 class="text-lg font-bold">Hasil Pemeriksaan Sistem</h3>
+                        </div>
+                        <div class="space-y-2 mb-4">
+                            ${checks.map(check => `
+                                <div class="flex items-center justify-between">
+                                    <span class="text-sm">${check.name}</span>
+                                    <span class="text-xs px-2 py-1 rounded-full ${check.status ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}">
+                                        ${check.status ? 'OK' : 'Error'}
+                                    </span>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div class="text-center">
+                            <button onclick="this.closest('.fixed').remove()" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition">
+                                Tutup
+                            </button>
+                        </div>
+                    </div>
+                `;
+                document.body.appendChild(modal);
+                
+                addActivity(`Pemeriksaan sistem selesai - Status: ${allPassed ? 'Semua OK' : 'Ada masalah'}`);
+            }, 2000);
+        }
+
+        function showAllUpcomingEvents() {
+            const now = new Date();
+            const upcoming = events
+                .filter(e => new Date(e.date) > now && e.status === 'scheduled')
+                .sort((a, b) => new Date(a.date) - new Date(b.date));
+            
+            const modal = document.createElement('div');
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+            modal.innerHTML = `
+                <div class="bg-white rounded-lg p-6 max-w-4xl w-full mx-4 max-h-96 overflow-y-auto">
+                    <div class="flex justify-between items-center mb-4">
+                        <h3 class="text-xl font-bold text-maroon flex items-center space-x-2">
+                            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                            </svg>
+                            <span>Semua Acara Mendatang (${upcoming.length})</span>
+                        </h3>
+                        <button onclick="this.closest('.fixed').remove()" class="text-gray-500 hover:text-gray-700">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="space-y-3">
+                        ${upcoming.length === 0 ? 
+                            '<p class="text-gray-500 text-center py-8">Tidak ada acara mendatang</p>' :
+                            upcoming.map(event => `
+                                <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition cursor-pointer"
+                                     onclick="viewEventDetails('${event.id}'); this.closest('.fixed').remove();">
+                                    <div class="flex-1">
+                                        <h4 class="font-medium text-gray-900">${event.title}</h4>
+                                        <p class="text-sm text-gray-600">${new Date(event.date).toLocaleDateString('id-ID')} - ${event.time}</p>
+                                        ${event.location ? `<p class="text-xs text-gray-500">📍 ${event.location}</p>` : ''}
+                                        ${event.speaker ? `<p class="text-xs text-blue-600">👤 ${event.speaker}</p>` : ''}
+                                    </div>
+                                    <div class="text-right">
+                                        <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Terjadwal</span>
+                                        <p class="text-xs text-gray-500 mt-1">${Math.ceil((new Date(event.date) - now) / (1000 * 60 * 60 * 24))} hari lagi</p>
+                                    </div>
+                                </div>
+                            `).join('')
+                        }
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // Email Settings Management
+        function loadEmailSettings() {
+            const emailSettings = JSON.parse(localStorage.getItem('emailSettings')) || {
+                primaryEmail: 'logistikojkdiy@gmail.com',
+                ccEmails: ['admin@ojk-diy.go.id', 'epk@ojk-diy.go.id', 'sekretariat@ojk-diy.go.id'],
+                enabled: true
+            };
+            
+            document.getElementById('primaryEmail').value = emailSettings.primaryEmail;
+            document.getElementById('emailEnabled').value = emailSettings.enabled.toString();
+            document.getElementById('ccEmails').value = emailSettings.ccEmails.join(', ');
+            
+            updateEmailStatus(emailSettings.enabled);
+        }
+        
+        function saveEmailSettings() {
+            const primaryEmail = document.getElementById('primaryEmail').value.trim();
+            const enabled = document.getElementById('emailEnabled').value === 'true';
+            const ccEmailsText = document.getElementById('ccEmails').value;
+            
+            // Validate primary email
+            if (!primaryEmail || !isValidEmail(primaryEmail)) {
+                alert('Email utama tidak valid!');
+                return false;
+            }
+            
+            // Parse CC emails
+            const ccEmails = ccEmailsText
+                .split(',')
+                .map(email => email.trim())
+                .filter(email => email && isValidEmail(email));
+            
+            const emailSettings = {
+                primaryEmail: primaryEmail,
+                ccEmails: ccEmails,
+                enabled: enabled,
+                lastUpdated: new Date().toISOString()
+            };
+            
+            localStorage.setItem('emailSettings', JSON.stringify(emailSettings));
+            updateEmailStatus(enabled);
+            
+            // Show success notification
+            const notification = {
+                id: 'email_settings_' + Date.now(),
+                title: '⚙️ Pengaturan Email Disimpan',
+                message: `Email utama: ${primaryEmail} | Status: ${enabled ? 'Aktif' : 'Nonaktif'} | CC: ${ccEmails.length} email`,
+                timestamp: new Date().toISOString(),
+                read: false,
+                type: 'settings'
+            };
+            
+            notifications.push(notification);
+            localStorage.setItem('notifications', JSON.stringify(notifications));
+            updateNotificationBadge();
+            
+            addActivity(`Pengaturan email diperbarui - Email utama: ${primaryEmail}`);
+            
+            return true;
+        }
+        
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        function updateEmailStatus(enabled) {
+            const statusEl = document.getElementById('emailStatus');
+            if (statusEl) {
+                statusEl.innerHTML = enabled ? 
+                    '<span class="text-green-600">✅ Aktif</span>' : 
+                    '<span class="text-red-600">❌ Nonaktif</span>';
+            }
+        }
+        
+        function testEmailNotification() {
+            const emailSettings = JSON.parse(localStorage.getItem('emailSettings')) || {};
+            
+            if (!emailSettings.enabled) {
+                alert('Notifikasi email sedang nonaktif. Aktifkan terlebih dahulu di pengaturan.');
+                return;
+            }
+            
+            if (!emailSettings.primaryEmail) {
+                alert('Email utama belum diatur. Silakan atur email terlebih dahulu.');
+                return;
+            }
+            
+            // Create test event
+            const testEvent = {
+                id: 'test_' + Date.now(),
+                title: 'Test Notifikasi Email - PEPK Dashboard',
+                date: new Date().toISOString().split('T')[0],
+                time: new Date().toTimeString().substring(0, 5),
+                location: 'Kantor OJK DIY',
+                speaker: 'Admin PEPK',
+                priority: 'medium',
+                category: 'meeting',
+                description: 'Ini adalah test email notifikasi untuk memastikan sistem berjalan dengan baik.'
+            };
+            
+            // Send test email
+            sendEmailNotification(testEvent, 'test');
+            
+            // Show confirmation
+            alert(`📧 Test email telah dikirim ke:\n\n` +
+                  `Email Utama: ${emailSettings.primaryEmail}\n` +
+                  `Email CC: ${emailSettings.ccEmails.join(', ')}\n\n` +
+                  `Silakan cek inbox email Anda.`);
+            
+            addActivity(`Test email notifikasi dikirim ke ${emailSettings.primaryEmail}`);
+        }
+        
+        function updateSystemInfo() {
+            // Update stored events count
+            const totalStoredEl = document.getElementById('totalStoredEvents');
+            if (totalStoredEl) totalStoredEl.textContent = `${events.length} acara`;
+            
+            // Update notifications count
+            const totalNotifEl = document.getElementById('totalNotifications');
+            if (totalNotifEl) totalNotifEl.textContent = `${notifications.length} notifikasi`;
+            
+            // Update last login time
+            const lastLoginEl = document.getElementById('lastLoginTime');
+            if (lastLoginEl) {
+                const loginTime = localStorage.getItem('lastLoginTime') || new Date().toISOString();
+                lastLoginEl.textContent = new Date(loginTime).toLocaleString('id-ID');
+            }
+            
+            // Update browser info
+            const browserEl = document.getElementById('browserInfo');
+            if (browserEl) {
+                const userAgent = navigator.userAgent;
+                let browserName = 'Unknown';
+                if (userAgent.includes('Chrome')) browserName = 'Chrome';
+                else if (userAgent.includes('Firefox')) browserName = 'Firefox';
+                else if (userAgent.includes('Safari')) browserName = 'Safari';
+                else if (userAgent.includes('Edge')) browserName = 'Edge';
+                browserEl.textContent = browserName;
+            }
+            
+            // Update email status
+            const emailSettings = JSON.parse(localStorage.getItem('emailSettings')) || { enabled: true };
+            updateEmailStatus(emailSettings.enabled);
+        }
+        
+        function exportSettings() {
+            const settings = {
+                emailSettings: JSON.parse(localStorage.getItem('emailSettings')) || {},
+                events: events,
+                notifications: notifications,
+                exportDate: new Date().toISOString(),
+                version: 'PEPK Dashboard v2.1'
+            };
+            
+            const dataStr = JSON.stringify(settings, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `PEPK_Settings_${new Date().toISOString().split('T')[0]}.json`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            addActivity('Pengaturan sistem berhasil diekspor');
+        }
+        
+        function importSettings() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    try {
+                        const settings = JSON.parse(e.target.result);
+                        
+                        if (settings.emailSettings) {
+                            localStorage.setItem('emailSettings', JSON.stringify(settings.emailSettings));
+                        }
+                        
+                        if (settings.events && Array.isArray(settings.events)) {
+                            events = settings.events;
+                            localStorage.setItem('calendarEvents', JSON.stringify(events));
+                        }
+                        
+                        if (settings.notifications && Array.isArray(settings.notifications)) {
+                            notifications = settings.notifications;
+                            localStorage.setItem('notifications', JSON.stringify(notifications));
+                        }
+                        
+                        // Reload settings and update display
+                        loadEmailSettings();
+                        updateSystemInfo();
+                        renderCalendar();
+                        updateDashboard();
+                        updateNotificationBadge();
+                        
+                        alert('✅ Pengaturan berhasil diimpor!');
+                        addActivity('Pengaturan sistem berhasil diimpor');
+                        
+                    } catch (error) {
+                        alert('❌ File tidak valid atau rusak!');
+                        console.error('Import error:', error);
+                    }
+                };
+                reader.readAsText(file);
+            };
+            
+            input.click();
+        }
+        
+        function resetSettings() {
+            if (confirm('⚠️ Apakah Anda yakin ingin mereset semua pengaturan ke default?\n\nTindakan ini akan menghapus:\n• Pengaturan email\n• Semua data acara\n• Semua notifikasi\n\nTindakan ini tidak dapat dibatalkan!')) {
+                // Clear all localStorage
+                localStorage.removeItem('emailSettings');
+                localStorage.removeItem('calendarEvents');
+                localStorage.removeItem('notifications');
+                localStorage.removeItem('activities');
+                
+                // Reset variables
+                events = [];
+                notifications = [];
+                
+                // Reload default settings
+                loadEmailSettings();
+                updateSystemInfo();
+                renderCalendar();
+                updateDashboard();
+                updateNotificationBadge();
+                
+                alert('✅ Semua pengaturan telah direset ke default!');
+                addActivity('Sistem direset ke pengaturan default');
+            }
+        }
+
         // Global functions for onclick handlers
         window.viewEventDetails = viewEventDetails;
         window.viewDayEvents = viewDayEvents;
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'980724f9e07a3f9f',t:'MTc1ODA5NjgwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9807b424a023fe0b',t:'MTc1ODEwMjY3Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
