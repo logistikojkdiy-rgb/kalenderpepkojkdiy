@@ -1819,14 +1819,82 @@
             document.getElementById('addEventBtn').addEventListener('click', () => openEventModal());
             document.getElementById('quickAddBtn').addEventListener('click', () => openQuickAddModal());
             
-            // Modal close buttons
-            document.getElementById('cancelEvent').addEventListener('click', closeEventModal);
-            document.getElementById('closeEventModal').addEventListener('click', closeEventModal);
-            document.getElementById('cancelQuickAdd').addEventListener('click', closeQuickAddModal);
-            document.getElementById('cancelPassword').addEventListener('click', closePasswordModal);
-            document.getElementById('closeEventDetails').addEventListener('click', closeEventDetailsModal);
-            document.getElementById('closeDayEvents').addEventListener('click', closeDayEventsModal);
-            document.getElementById('cancelEditEvent').addEventListener('click', closeEditEventModal);
+            // Modal close buttons - Fixed with proper event handling
+            document.getElementById('cancelEvent').addEventListener('click', function(e) {
+                e.preventDefault();
+                closeEventModal();
+            });
+            
+            document.getElementById('cancelQuickAdd').addEventListener('click', function(e) {
+                e.preventDefault();
+                closeQuickAddModal();
+            });
+            
+            document.getElementById('cancelPassword').addEventListener('click', function(e) {
+                e.preventDefault();
+                closePasswordModal();
+            });
+            
+            document.getElementById('closeEventDetails').addEventListener('click', function(e) {
+                e.preventDefault();
+                closeEventDetailsModal();
+            });
+            
+            document.getElementById('closeDayEvents').addEventListener('click', function(e) {
+                e.preventDefault();
+                closeDayEventsModal();
+            });
+            
+            document.getElementById('cancelEditEvent').addEventListener('click', function(e) {
+                e.preventDefault();
+                closeEditEventModal();
+            });
+            
+            // Close modals when clicking outside
+            document.addEventListener('click', function(e) {
+                // Event Modal
+                const eventModal = document.getElementById('eventModal');
+                if (e.target === eventModal) {
+                    closeEventModal();
+                }
+                
+                // Quick Add Modal
+                const quickModal = document.getElementById('quickAddModal');
+                if (e.target === quickModal) {
+                    closeQuickAddModal();
+                }
+                
+                // Password Modal
+                const passwordModal = document.getElementById('passwordModal');
+                if (e.target === passwordModal) {
+                    closePasswordModal();
+                }
+                
+                // Event Details Modal
+                const detailsModal = document.getElementById('eventDetailsModal');
+                if (e.target === detailsModal) {
+                    closeEventDetailsModal();
+                }
+                
+                // Day Events Modal
+                const dayModal = document.getElementById('dayEventsModal');
+                if (e.target === dayModal) {
+                    closeDayEventsModal();
+                }
+                
+                // Edit Event Modal
+                const editModal = document.getElementById('editEventModal');
+                if (e.target === editModal) {
+                    closeEditEventModal();
+                }
+                
+                // Notification Panel
+                const panel = document.getElementById('notificationPanel');
+                const btn = document.getElementById('notificationBtn');
+                if (!panel.contains(e.target) && !btn.contains(e.target)) {
+                    panel.classList.add('hidden');
+                }
+            });
             
             // Password strength checker
             document.getElementById('eventPassword').addEventListener('input', function() {
@@ -1843,53 +1911,108 @@
                 }
             });
             
-            document.getElementById('applyFilter').addEventListener('click', applyReportFilter);
-            document.getElementById('resetFilter').addEventListener('click', resetReportFilter);
+            document.getElementById('applyFilter').addEventListener('click', function(e) {
+                e.preventDefault();
+                applyReportFilter();
+            });
+            
+            document.getElementById('resetFilter').addEventListener('click', function(e) {
+                e.preventDefault();
+                resetReportFilter();
+            });
             
             // Event action buttons
-            document.getElementById('editEventBtn').addEventListener('click', () => {
+            document.getElementById('editEventBtn').addEventListener('click', function(e) {
+                e.preventDefault();
                 const eventId = document.getElementById('eventDetailsModal').dataset.eventId;
-                verifyEventPassword(eventId, 'edit');
-            });
-            
-            document.getElementById('rescheduleEventBtn').addEventListener('click', () => {
-                const eventId = document.getElementById('eventDetailsModal').dataset.eventId;
-                verifyEventPassword(eventId, 'reschedule');
-            });
-            
-            document.getElementById('completeEventBtn').addEventListener('click', completeEvent);
-            
-            document.getElementById('deleteEventBtn').addEventListener('click', () => {
-                const eventId = document.getElementById('eventDetailsModal').dataset.eventId;
-                verifyEventPassword(eventId, 'delete');
-            });
-            
-            // Edit event form
-            document.getElementById('editEventForm').addEventListener('submit', handleEditEventSubmit);
-            
-            // Notification system
-            document.getElementById('notificationBtn').addEventListener('click', toggleNotificationPanel);
-            
-            // Close notification panel when clicking outside
-            document.addEventListener('click', function(e) {
-                const panel = document.getElementById('notificationPanel');
-                const btn = document.getElementById('notificationBtn');
-                
-                if (!panel.contains(e.target) && !btn.contains(e.target)) {
-                    panel.classList.add('hidden');
+                if (eventId) {
+                    verifyEventPassword(eventId, 'edit');
                 }
             });
             
-            // Download listeners
-            document.getElementById('downloadPDF').addEventListener('click', downloadPDF);
-            document.getElementById('downloadExcel').addEventListener('click', downloadExcel);
-            document.getElementById('downloadWord').addEventListener('click', downloadWord);
+            document.getElementById('rescheduleEventBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                const eventId = document.getElementById('eventDetailsModal').dataset.eventId;
+                if (eventId) {
+                    verifyEventPassword(eventId, 'reschedule');
+                }
+            });
+            
+            document.getElementById('completeEventBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                completeEvent();
+            });
+            
+            document.getElementById('deleteEventBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                const eventId = document.getElementById('eventDetailsModal').dataset.eventId;
+                if (eventId) {
+                    verifyEventPassword(eventId, 'delete');
+                }
+            });
+            
+            // Edit event form
+            document.getElementById('editEventForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                handleEditEventSubmit(e);
+            });
+            
+            // Notification system
+            document.getElementById('notificationBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                toggleNotificationPanel();
+            });
+            
+            // Download listeners - Fixed with proper error handling
+            document.getElementById('downloadPDF').addEventListener('click', function(e) {
+                e.preventDefault();
+                try {
+                    downloadPDF();
+                } catch (error) {
+                    console.error('PDF Download Error:', error);
+                    alert('Gagal mengunduh PDF. Silakan coba lagi.');
+                }
+            });
+            
+            document.getElementById('downloadExcel').addEventListener('click', function(e) {
+                e.preventDefault();
+                try {
+                    downloadExcel();
+                } catch (error) {
+                    console.error('Excel Download Error:', error);
+                    alert('Gagal mengunduh Excel. Silakan coba lagi.');
+                }
+            });
+            
+            document.getElementById('downloadWord').addEventListener('click', function(e) {
+                e.preventDefault();
+                try {
+                    downloadWord();
+                } catch (error) {
+                    console.error('Word Download Error:', error);
+                    alert('Gagal mengunduh Word. Silakan coba lagi.');
+                }
+            });
             
             // Enhanced dashboard listeners
-            document.getElementById('refreshPriorityChart').addEventListener('click', updatePriorityChart);
-            document.getElementById('trendPeriod').addEventListener('change', updateMonthlyTrendChart);
-            document.getElementById('viewAllSpeakers').addEventListener('click', showAllSpeakers);
-            document.getElementById('toggleCategoryView').addEventListener('click', toggleCategoryView);
+            document.getElementById('refreshPriorityChart').addEventListener('click', function(e) {
+                e.preventDefault();
+                updatePriorityChart();
+            });
+            
+            document.getElementById('trendPeriod').addEventListener('change', function() {
+                updateMonthlyTrendChart();
+            });
+            
+            document.getElementById('viewAllSpeakers').addEventListener('click', function(e) {
+                e.preventDefault();
+                showAllSpeakers();
+            });
+            
+            document.getElementById('toggleCategoryView').addEventListener('click', function(e) {
+                e.preventDefault();
+                toggleCategoryView();
+            });
             
             // Auto-check for overdue events
             setInterval(checkOverdueEvents, 300000); // Check every 5 minutes
@@ -2254,6 +2377,12 @@
         // Enhanced Download Functions
         function downloadPDF() {
             try {
+                // Check if jsPDF is available
+                if (typeof window.jspdf === 'undefined') {
+                    alert('Library PDF tidak tersedia. Silakan refresh halaman dan coba lagi.');
+                    return;
+                }
+                
                 const { jsPDF } = window.jspdf;
                 const doc = new jsPDF('p', 'mm', 'a4');
                 const data = generateReportData();
@@ -2263,7 +2392,7 @@
                 const grayColor = [100, 100, 100];
                 
                 // Header with logo area
-                doc.setFillColor(...maroonColor);
+                doc.setFillColor(maroonColor[0], maroonColor[1], maroonColor[2]);
                 doc.rect(0, 0, 210, 35, 'F');
                 
                 // Header text
@@ -2286,8 +2415,8 @@
                 
                 doc.setFontSize(12);
                 doc.setFont('helvetica', 'bold');
-                doc.text(`Periode Laporan: ${data.header.period}`, 20, 60);
-                doc.text(`Tanggal Cetak: ${data.header.generatedAt}`, 20, 67);
+                doc.text('Periode Laporan: ' + data.header.period, 20, 60);
+                doc.text('Tanggal Cetak: ' + data.header.generatedAt, 20, 67);
                 
                 // Summary section
                 let yPos = 85;
@@ -2296,7 +2425,7 @@
                 
                 doc.setFontSize(14);
                 doc.setFont('helvetica', 'bold');
-                doc.setTextColor(...maroonColor);
+                doc.setTextColor(maroonColor[0], maroonColor[1], maroonColor[2]);
                 doc.text('RINGKASAN KEGIATAN', 20, yPos + 5);
                 
                 doc.setTextColor(0, 0, 0);
@@ -2304,17 +2433,17 @@
                 doc.setFont('helvetica', 'normal');
                 
                 const summaryData = [
-                    [`Total Kegiatan`, `${data.summary.totalEvents} kegiatan`],
-                    [`Kegiatan Selesai`, `${data.summary.completedEvents} kegiatan (${data.summary.totalEvents > 0 ? Math.round((data.summary.completedEvents/data.summary.totalEvents)*100) : 0}%)`],
-                    [`Kegiatan Dibatalkan`, `${data.summary.cancelledEvents} kegiatan`],
-                    [`Kegiatan Mendatang`, `${data.summary.upcomingEvents} kegiatan`],
-                    [`Narasumber Terlibat`, `${data.summary.uniqueSpeakers} orang`]
+                    ['Total Kegiatan', data.summary.totalEvents + ' kegiatan'],
+                    ['Kegiatan Selesai', data.summary.completedEvents + ' kegiatan (' + (data.summary.totalEvents > 0 ? Math.round((data.summary.completedEvents/data.summary.totalEvents)*100) : 0) + '%)'],
+                    ['Kegiatan Dibatalkan', data.summary.cancelledEvents + ' kegiatan'],
+                    ['Kegiatan Mendatang', data.summary.upcomingEvents + ' kegiatan'],
+                    ['Narasumber Terlibat', data.summary.uniqueSpeakers + ' orang']
                 ];
                 
                 summaryData.forEach(([label, value], index) => {
                     const rowY = yPos + 12 + (index * 6);
                     doc.setFont('helvetica', 'bold');
-                    doc.text(`• ${label}:`, 25, rowY);
+                    doc.text('• ' + label + ':', 25, rowY);
                     doc.setFont('helvetica', 'normal');
                     doc.text(value, 80, rowY);
                 });
@@ -2323,12 +2452,12 @@
                 yPos = 150;
                 doc.setFontSize(14);
                 doc.setFont('helvetica', 'bold');
-                doc.setTextColor(...maroonColor);
+                doc.setTextColor(maroonColor[0], maroonColor[1], maroonColor[2]);
                 doc.text('DAFTAR KEGIATAN DETAIL', 20, yPos);
                 
                 // Table header
                 yPos += 10;
-                doc.setFillColor(...maroonColor);
+                doc.setFillColor(maroonColor[0], maroonColor[1], maroonColor[2]);
                 doc.rect(15, yPos, 180, 8, 'F');
                 
                 doc.setTextColor(255, 255, 255);
@@ -2351,7 +2480,7 @@
                         yPos = 20;
                         
                         // Repeat header on new page
-                        doc.setFillColor(...maroonColor);
+                        doc.setFillColor(maroonColor[0], maroonColor[1], maroonColor[2]);
                         doc.rect(15, yPos, 180, 8, 'F');
                         doc.setTextColor(255, 255, 255);
                         doc.setFontSize(9);
@@ -2379,9 +2508,9 @@
                     doc.text((event.speaker || '-').substring(0, 20), 120, yPos + 4);
                     
                     // Status with color
-                    if (event.status === 'completed') {
+                    if (event.status === 'Selesai') {
                         doc.setTextColor(0, 128, 0);
-                    } else if (event.status === 'cancelled') {
+                    } else if (event.status === 'Dibatalkan') {
                         doc.setTextColor(255, 0, 0);
                     } else {
                         doc.setTextColor(0, 0, 255);
@@ -2397,21 +2526,21 @@
                 for (let i = 1; i <= pageCount; i++) {
                     doc.setPage(i);
                     doc.setFontSize(8);
-                    doc.setTextColor(...grayColor);
-                    doc.text(`Halaman ${i} dari ${pageCount}`, 105, 290, { align: 'center' });
+                    doc.setTextColor(grayColor[0], grayColor[1], grayColor[2]);
+                    doc.text('Halaman ' + i + ' dari ' + pageCount, 105, 290, { align: 'center' });
                     doc.text('PEPK Dashboard - Otoritas Jasa Keuangan DIY', 20, 285);
-                    doc.text(`Dicetak: ${new Date().toLocaleString('id-ID')}`, 20, 290);
+                    doc.text('Dicetak: ' + new Date().toLocaleString('id-ID'), 20, 290);
                 }
                 
                 // Save with proper filename
-                const filename = `Laporan_Kegiatan_OJK_DIY_${data.header.period.replace(/[^a-zA-Z0-9]/g, '_')}.pdf`;
+                const filename = 'Laporan_Kegiatan_OJK_DIY_' + data.header.period.replace(/[^a-zA-Z0-9]/g, '_') + '.pdf';
                 doc.save(filename);
                 
                 // Show success notification
                 const notification = {
-                    id: `pdf_download_${Date.now()}`,
+                    id: 'pdf_download_' + Date.now(),
                     title: '📄 PDF Berhasil Diunduh',
-                    message: `Laporan "${filename}" telah berhasil diunduh`,
+                    message: 'Laporan "' + filename + '" telah berhasil diunduh',
                     timestamp: new Date().toISOString(),
                     read: false
                 };
@@ -2422,123 +2551,171 @@
                 
             } catch (error) {
                 console.error('Error generating PDF:', error);
-                alert('Terjadi kesalahan saat membuat PDF. Silakan coba lagi.');
+                alert('Terjadi kesalahan saat membuat PDF: ' + error.message);
             }
         }
 
         function downloadExcel() {
-            const data = generateReportData();
-            const wb = XLSX.utils.book_new();
-            
-            // Summary sheet
-            const summaryData = [
-                ['LAPORAN KEGIATAN BULANAN'],
-                ['OTORITAS JASA KEUANGAN - DAERAH ISTIMEWA YOGYAKARTA'],
-                [''],
-                [`Periode: ${data.header.period}`],
-                [`Dibuat pada: ${data.header.generatedAt}`],
-                [''],
-                ['RINGKASAN'],
-                ['Total Acara', data.summary.totalEvents],
-                ['Acara Selesai', data.summary.completedEvents],
-                ['Acara Dibatalkan', data.summary.cancelledEvents],
-                ['Acara Mendatang', data.summary.upcomingEvents],
-                ['Narasumber Terlibat', data.summary.uniqueSpeakers]
-            ];
-            
-            const summaryWs = XLSX.utils.aoa_to_sheet(summaryData);
-            XLSX.utils.book_append_sheet(wb, summaryWs, 'Ringkasan');
-            
-            // Events sheet
-            const eventsData = [
-                ['Tanggal', 'Waktu', 'Judul Acara', 'Lokasi', 'Narasumber', 'Kategori', 'Prioritas', 'Deskripsi', 'Status'],
-                ...data.events.map(event => [
-                    event.date,
-                    event.time,
-                    event.title,
-                    event.location,
-                    event.speaker,
-                    event.category,
-                    event.priority,
-                    event.description,
-                    event.status
-                ])
-            ];
-            
-            const eventsWs = XLSX.utils.aoa_to_sheet(eventsData);
-            XLSX.utils.book_append_sheet(wb, eventsWs, 'Daftar Acara');
-            
-            XLSX.writeFile(wb, `Laporan_Kegiatan_${data.header.period.replace(/[^a-zA-Z0-9]/g, '_')}.xlsx`);
+            try {
+                // Check if XLSX is available
+                if (typeof XLSX === 'undefined') {
+                    alert('Library Excel tidak tersedia. Silakan refresh halaman dan coba lagi.');
+                    return;
+                }
+                
+                const data = generateReportData();
+                const wb = XLSX.utils.book_new();
+                
+                // Summary sheet
+                const summaryData = [
+                    ['LAPORAN KEGIATAN BULANAN'],
+                    ['OTORITAS JASA KEUANGAN - DAERAH ISTIMEWA YOGYAKARTA'],
+                    [''],
+                    ['Periode: ' + data.header.period],
+                    ['Dibuat pada: ' + data.header.generatedAt],
+                    [''],
+                    ['RINGKASAN'],
+                    ['Total Acara', data.summary.totalEvents],
+                    ['Acara Selesai', data.summary.completedEvents],
+                    ['Acara Dibatalkan', data.summary.cancelledEvents],
+                    ['Acara Mendatang', data.summary.upcomingEvents],
+                    ['Narasumber Terlibat', data.summary.uniqueSpeakers]
+                ];
+                
+                const summaryWs = XLSX.utils.aoa_to_sheet(summaryData);
+                XLSX.utils.book_append_sheet(wb, summaryWs, 'Ringkasan');
+                
+                // Events sheet
+                const eventsData = [
+                    ['Tanggal', 'Waktu', 'Judul Acara', 'Lokasi', 'Narasumber', 'Kategori', 'Prioritas', 'Deskripsi', 'Status'],
+                    ...data.events.map(event => [
+                        event.date,
+                        event.time,
+                        event.title,
+                        event.location,
+                        event.speaker,
+                        event.category,
+                        event.priority,
+                        event.description,
+                        event.status
+                    ])
+                ];
+                
+                const eventsWs = XLSX.utils.aoa_to_sheet(eventsData);
+                XLSX.utils.book_append_sheet(wb, eventsWs, 'Daftar Acara');
+                
+                const filename = 'Laporan_Kegiatan_' + data.header.period.replace(/[^a-zA-Z0-9]/g, '_') + '.xlsx';
+                XLSX.writeFile(wb, filename);
+                
+                // Show success notification
+                const notification = {
+                    id: 'excel_download_' + Date.now(),
+                    title: '📊 Excel Berhasil Diunduh',
+                    message: 'Laporan "' + filename + '" telah berhasil diunduh',
+                    timestamp: new Date().toISOString(),
+                    read: false
+                };
+                
+                notifications.push(notification);
+                localStorage.setItem('notifications', JSON.stringify(notifications));
+                updateNotificationBadge();
+                
+            } catch (error) {
+                console.error('Error generating Excel:', error);
+                alert('Terjadi kesalahan saat membuat Excel: ' + error.message);
+            }
         }
 
         function downloadWord() {
-            const data = generateReportData();
-            
-            let content = `
-                <div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px;">
-                    <div style="text-align: center; margin-bottom: 30px; border-bottom: 2px solid #800020; padding-bottom: 20px;">
-                        <h1 style="color: #800020; margin: 0; font-size: 18px; font-weight: bold;">${data.header.title}</h1>
-                        <h2 style="color: #800020; margin: 5px 0; font-size: 14px;">${data.header.organization}</h2>
-                        <h3 style="color: #800020; margin: 5px 0; font-size: 12px;">${data.header.division}</h3>
-                        <p style="margin: 10px 0; font-size: 10px; color: #666;">${data.header.address}</p>
-                    </div>
-                    
-                    <div style="margin-bottom: 20px;">
-                        <p><strong>Periode:</strong> ${data.header.period}</p>
-                        <p><strong>Dibuat pada:</strong> ${data.header.generatedAt}</p>
-                    </div>
-                    
-                    <div style="margin-bottom: 30px;">
-                        <h3 style="color: #800020; border-bottom: 1px solid #800020; padding-bottom: 5px;">RINGKASAN</h3>
-                        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-                            <tr><td style="padding: 5px; border: 1px solid #ddd;"><strong>Total Acara</strong></td><td style="padding: 5px; border: 1px solid #ddd;">${data.summary.totalEvents}</td></tr>
-                            <tr><td style="padding: 5px; border: 1px solid #ddd;"><strong>Acara Selesai</strong></td><td style="padding: 5px; border: 1px solid #ddd;">${data.summary.completedEvents}</td></tr>
-                            <tr><td style="padding: 5px; border: 1px solid #ddd;"><strong>Acara Dibatalkan</strong></td><td style="padding: 5px; border: 1px solid #ddd;">${data.summary.cancelledEvents}</td></tr>
-                            <tr><td style="padding: 5px; border: 1px solid #ddd;"><strong>Acara Mendatang</strong></td><td style="padding: 5px; border: 1px solid #ddd;">${data.summary.upcomingEvents}</td></tr>
-                            <tr><td style="padding: 5px; border: 1px solid #ddd;"><strong>Narasumber Terlibat</strong></td><td style="padding: 5px; border: 1px solid #ddd;">${data.summary.uniqueSpeakers}</td></tr>
-                        </table>
-                    </div>
-                    
-                    <div>
-                        <h3 style="color: #800020; border-bottom: 1px solid #800020; padding-bottom: 5px;">DAFTAR ACARA</h3>
-                        <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-                            <thead>
-                                <tr style="background-color: #800020; color: white;">
-                                    <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Tanggal</th>
-                                    <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Waktu</th>
-                                    <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Judul Acara</th>
-                                    <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Narasumber</th>
-                                    <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                ${data.events.map(event => `
-                                    <tr>
-                                        <td style="padding: 8px; border: 1px solid #ddd;">${event.date}</td>
-                                        <td style="padding: 8px; border: 1px solid #ddd;">${event.time}</td>
-                                        <td style="padding: 8px; border: 1px solid #ddd;">${event.title}</td>
-                                        <td style="padding: 8px; border: 1px solid #ddd;">${event.speaker}</td>
-                                        <td style="padding: 8px; border: 1px solid #ddd;">${event.status}</td>
+            try {
+                const data = generateReportData();
+                
+                let content = `
+                    <div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px;">
+                        <div style="text-align: center; margin-bottom: 30px; border-bottom: 2px solid #800020; padding-bottom: 20px;">
+                            <h1 style="color: #800020; margin: 0; font-size: 18px; font-weight: bold;">${data.header.title}</h1>
+                            <h2 style="color: #800020; margin: 5px 0; font-size: 14px;">${data.header.organization}</h2>
+                            <h3 style="color: #800020; margin: 5px 0; font-size: 12px;">${data.header.division}</h3>
+                            <p style="margin: 10px 0; font-size: 10px; color: #666;">${data.header.address}</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px;">
+                            <p><strong>Periode:</strong> ${data.header.period}</p>
+                            <p><strong>Dibuat pada:</strong> ${data.header.generatedAt}</p>
+                        </div>
+                        
+                        <div style="margin-bottom: 30px;">
+                            <h3 style="color: #800020; border-bottom: 1px solid #800020; padding-bottom: 5px;">RINGKASAN</h3>
+                            <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                                <tr><td style="padding: 5px; border: 1px solid #ddd;"><strong>Total Acara</strong></td><td style="padding: 5px; border: 1px solid #ddd;">${data.summary.totalEvents}</td></tr>
+                                <tr><td style="padding: 5px; border: 1px solid #ddd;"><strong>Acara Selesai</strong></td><td style="padding: 5px; border: 1px solid #ddd;">${data.summary.completedEvents}</td></tr>
+                                <tr><td style="padding: 5px; border: 1px solid #ddd;"><strong>Acara Dibatalkan</strong></td><td style="padding: 5px; border: 1px solid #ddd;">${data.summary.cancelledEvents}</td></tr>
+                                <tr><td style="padding: 5px; border: 1px solid #ddd;"><strong>Acara Mendatang</strong></td><td style="padding: 5px; border: 1px solid #ddd;">${data.summary.upcomingEvents}</td></tr>
+                                <tr><td style="padding: 5px; border: 1px solid #ddd;"><strong>Narasumber Terlibat</strong></td><td style="padding: 5px; border: 1px solid #ddd;">${data.summary.uniqueSpeakers}</td></tr>
+                            </table>
+                        </div>
+                        
+                        <div>
+                            <h3 style="color: #800020; border-bottom: 1px solid #800020; padding-bottom: 5px;">DAFTAR ACARA</h3>
+                            <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+                                <thead>
+                                    <tr style="background-color: #800020; color: white;">
+                                        <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Tanggal</th>
+                                        <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Waktu</th>
+                                        <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Judul Acara</th>
+                                        <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Narasumber</th>
+                                        <th style="padding: 8px; border: 1px solid #ddd; text-align: left;">Status</th>
                                     </tr>
-                                `).join('')}
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    ${data.events.map(event => `
+                                        <tr>
+                                            <td style="padding: 8px; border: 1px solid #ddd;">${event.date}</td>
+                                            <td style="padding: 8px; border: 1px solid #ddd;">${event.time}</td>
+                                            <td style="padding: 8px; border: 1px solid #ddd;">${event.title}</td>
+                                            <td style="padding: 8px; border: 1px solid #ddd;">${event.speaker}</td>
+                                            <td style="padding: 8px; border: 1px solid #ddd;">${event.status}</td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div style="margin-top: 40px; text-align: center; border-top: 1px solid #800020; padding-top: 20px; font-size: 10px; color: #666;">
+                            <p>PEPK Dashboard - Otoritas Jasa Keuangan Daerah Istimewa Yogyakarta</p>
+                            <p>${data.header.address}</p>
+                        </div>
                     </div>
-                    
-                    <div style="margin-top: 40px; text-align: center; border-top: 1px solid #800020; padding-top: 20px; font-size: 10px; color: #666;">
-                        <p>PEPK Dashboard - Otoritas Jasa Keuangan Daerah Istimewa Yogyakarta</p>
-                        <p>${data.header.address}</p>
-                    </div>
-                </div>
-            `;
-            
-            const blob = new Blob([content], { type: 'application/msword' });
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement('a');
-            a.href = url;
-            a.download = `Laporan_Kegiatan_${data.header.period.replace(/[^a-zA-Z0-9]/g, '_')}.doc`;
-            a.click();
-            URL.revokeObjectURL(url);
+                `;
+                
+                const blob = new Blob([content], { type: 'application/msword' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                const filename = 'Laporan_Kegiatan_' + data.header.period.replace(/[^a-zA-Z0-9]/g, '_') + '.doc';
+                a.download = filename;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                // Show success notification
+                const notification = {
+                    id: 'word_download_' + Date.now(),
+                    title: '📄 Word Berhasil Diunduh',
+                    message: 'Laporan "' + filename + '" telah berhasil diunduh',
+                    timestamp: new Date().toISOString(),
+                    read: false
+                };
+                
+                notifications.push(notification);
+                localStorage.setItem('notifications', JSON.stringify(notifications));
+                updateNotificationBadge();
+                
+            } catch (error) {
+                console.error('Error generating Word:', error);
+                alert('Terjadi kesalahan saat membuat Word: ' + error.message);
+            }
         }
 
         // Enhanced Dashboard Functions
@@ -2710,27 +2887,33 @@
             const completionRate = totalEvents > 0 ? (completedEvents / totalEvents) * 100 : 0;
             
             // Update completion rate
-            document.getElementById('completionRate').style.width = `${completionRate}%`;
-            document.getElementById('completionPercent').textContent = `${Math.round(completionRate)}%`;
+            const completionRateEl = document.getElementById('completionRate');
+            const completionPercentEl = document.getElementById('completionPercent');
+            if (completionRateEl) completionRateEl.style.width = `${completionRate}%`;
+            if (completionPercentEl) completionPercentEl.textContent = `${Math.round(completionRate)}%`;
             
             // Average per month
             const now = new Date();
             const sixMonthsAgo = new Date(now.getFullYear(), now.getMonth() - 6, 1);
             const recentEvents = events.filter(e => new Date(e.date) >= sixMonthsAgo);
             const avgPerMonth = Math.round(recentEvents.length / 6);
-            document.getElementById('avgPerMonth').textContent = avgPerMonth;
+            const avgPerMonthEl = document.getElementById('avgPerMonth');
+            if (avgPerMonthEl) avgPerMonthEl.textContent = avgPerMonth;
             
             // Next event
             const upcomingEvents = events
                 .filter(e => new Date(e.date) > now && e.status === 'scheduled')
                 .sort((a, b) => new Date(a.date) - new Date(b.date));
             
-            if (upcomingEvents.length > 0) {
-                const nextEvent = upcomingEvents[0];
-                const daysUntil = Math.ceil((new Date(nextEvent.date) - now) / (1000 * 60 * 60 * 24));
-                document.getElementById('nextEventDays').textContent = `${daysUntil} hari`;
-            } else {
-                document.getElementById('nextEventDays').textContent = 'Tidak ada';
+            const nextEventDaysEl = document.getElementById('nextEventDays');
+            if (nextEventDaysEl) {
+                if (upcomingEvents.length > 0) {
+                    const nextEvent = upcomingEvents[0];
+                    const daysUntil = Math.ceil((new Date(nextEvent.date) - now) / (1000 * 60 * 60 * 24));
+                    nextEventDaysEl.textContent = `${daysUntil} hari`;
+                } else {
+                    nextEventDaysEl.textContent = 'Tidak ada';
+                }
             }
             
             // Productivity stars
@@ -2738,7 +2921,8 @@
             const starsHtml = Array.from({length: 5}, (_, i) => 
                 `<span class="${i < productivity ? 'text-yellow-400' : 'text-gray-300'}">★</span>`
             ).join('');
-            document.getElementById('productivityStars').innerHTML = starsHtml;
+            const productivityStarsEl = document.getElementById('productivityStars');
+            if (productivityStarsEl) productivityStarsEl.innerHTML = starsHtml;
         }
 
         function updateCategoryDistribution() {
@@ -2926,50 +3110,66 @@
             const upcomingEvents = events.filter(e => new Date(e.date) > now && e.status === 'scheduled').length;
             const activeReminders = events.filter(e => e.reminder > 0 && e.status === 'scheduled').length;
 
-            document.getElementById('totalEvents').textContent = totalEvents;
-            document.getElementById('completedEvents').textContent = completedEvents;
-            document.getElementById('upcomingEvents').textContent = upcomingEvents;
-            document.getElementById('activeReminders').textContent = activeReminders;
+            // Update basic stats
+            const totalEl = document.getElementById('totalEvents');
+            const completedEl = document.getElementById('completedEvents');
+            const upcomingEl = document.getElementById('upcomingEvents');
+            const remindersEl = document.getElementById('activeReminders');
+            
+            if (totalEl) totalEl.textContent = totalEvents;
+            if (completedEl) completedEl.textContent = completedEvents;
+            if (upcomingEl) upcomingEl.textContent = upcomingEvents;
+            if (remindersEl) remindersEl.textContent = activeReminders;
             
             // Update speaker count
-            const uniqueSpeakers = [...new Set(events.filter(e => e.speaker).map(e => e.speaker))].length;
-            document.getElementById('speakerCount').textContent = uniqueSpeakers;
+            const uniqueSpeakers = [...new Set(events.filter(e => e.speaker && e.speaker.trim()).map(e => e.speaker))].length;
+            const speakerCountEl = document.getElementById('speakerCount');
+            if (speakerCountEl) speakerCountEl.textContent = uniqueSpeakers;
             
             // Update all enhanced dashboard components
-            updatePriorityChart();
-            updateMonthlyTrendChart();
-            updatePerformanceMetrics();
-            updateCategoryDistribution();
-            updateTimeAnalysis();
-            updateTopSpeakers();
+            try {
+                updatePriorityChart();
+                updateMonthlyTrendChart();
+                updatePerformanceMetrics();
+                updateCategoryDistribution();
+                updateTimeAnalysis();
+                updateTopSpeakers();
+            } catch (error) {
+                console.error('Error updating dashboard components:', error);
+            }
 
             // Update upcoming events list
             const upcomingList = document.getElementById('upcomingEventsList');
-            const upcoming = events
-                .filter(e => new Date(e.date) > now && e.status === 'scheduled')
-                .sort((a, b) => new Date(a.date) - new Date(b.date))
-                .slice(0, 5);
+            if (upcomingList) {
+                const upcoming = events
+                    .filter(e => new Date(e.date) > now && e.status === 'scheduled')
+                    .sort((a, b) => new Date(a.date) - new Date(b.date))
+                    .slice(0, 5);
 
-            if (upcoming.length === 0) {
-                upcomingList.innerHTML = '<p class="text-gray-500 text-center py-8">Tidak ada acara mendatang</p>';
-            } else {
-                upcomingList.innerHTML = upcoming.map(event => `
-                    <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition cursor-pointer"
-                         onclick="viewEventDetails('${event.id}')">
-                        <div>
-                            <h4 class="font-medium text-gray-900">${event.title}</h4>
-                            <p class="text-sm text-gray-600">${new Date(event.date).toLocaleDateString('id-ID')} - ${event.time}</p>
-                            ${event.speaker ? `<p class="text-xs text-blue-600">👤 ${event.speaker}</p>` : ''}
+                if (upcoming.length === 0) {
+                    upcomingList.innerHTML = '<p class="text-gray-500 text-center py-8">Tidak ada acara mendatang</p>';
+                } else {
+                    upcomingList.innerHTML = upcoming.map(event => `
+                        <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition cursor-pointer"
+                             onclick="viewEventDetails('${event.id}')">
+                            <div>
+                                <h4 class="font-medium text-gray-900">${event.title}</h4>
+                                <p class="text-sm text-gray-600">${new Date(event.date).toLocaleDateString('id-ID')} - ${event.time}</p>
+                                ${event.speaker ? `<p class="text-xs text-blue-600">👤 ${event.speaker}</p>` : ''}
+                            </div>
+                            <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Terjadwal</span>
                         </div>
-                        <span class="text-xs bg-yellow-100 text-yellow-800 px-2 py-1 rounded-full">Terjadwal</span>
-                    </div>
-                `).join('');
+                    `).join('');
+                }
             }
+            
+            // Update recent activity
+            updateRecentActivity();
         }
 
         // Global functions for onclick handlers
         window.viewEventDetails = viewEventDetails;
         window.viewDayEvents = viewDayEvents;
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98070b3e2780577a',t:'MTc1ODA5NTc1NC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'980724f9e07a3f9f',t:'MTc1ODA5NjgwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
